@@ -64,11 +64,23 @@ savingPattern = {
   "expForMissed": expForMissed
 }
 
+def UpdateSavingPattern():
+    global savingPattern
+    savingPattern = {
+        "playerLevel": playerLevel,
+        "playerCurrentXP": playerCurrentXP,
+        "playerRequiredXP": playerRequiredXP,
+        "expForEasy": expForEasy,
+        "expForMedium": expForMedium,
+        "expForHard": expForHard,
+        "expForMissed": expForMissed
+    }
+
 # Sauvegarde les données lors de la fermeture de l'application
 
 
 # Gain d'expérience
-def OnReviewResults(reviewer, card, ease):
+def GainXPOnReviewResults(reviewer, card, ease):
     global playerCurrentXP
     global savingPattern
     # Carte facile
@@ -87,10 +99,12 @@ def OnReviewResults(reviewer, card, ease):
         playerCurrentXP = playerCurrentXP + 0
     # Vérifie si le joueur peut monter de niveau
     LevelingUp()
+    # Actualise le paterne de sauvegarde.
+    UpdateSavingPattern()
     # Sauvegarde des données en utilisant un paterne de sauvegarde
     SaveConfig(savingPattern)
 # Hooking de la fonction plus haute à "reviewer_did_answer_card".
-gui_hooks.reviewer_did_answer_card.append(OnReviewResults)
+gui_hooks.reviewer_did_answer_card.append(GainXPOnReviewResults)
 
 # Gain de niveau
 def LevelingUp():
