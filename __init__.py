@@ -87,8 +87,6 @@ def OnReviewResults(reviewer, card, ease):
         playerCurrentXP = playerCurrentXP + 0
     # Vérifie si le joueur peut monter de niveau
     LevelingUp()
-    # Actualise le paterne de sauvegarde.
-    UpdateSavingPattern()
     # Sauvegarde des données en utilisant un paterne de sauvegarde
     SaveConfig(savingPattern)
 # Hooking de la fonction plus haute à "reviewer_did_answer_card".
@@ -114,29 +112,6 @@ def LevelingUp():
 # Affiche l'expérience du joueur ainsi que son niveau.
 def ShowXP() -> None:
     showInfo("Niveau : " + str(playerLevel) + "\nXP : " + str(playerCurrentXP) + "/" + str(playerRequiredXP))
-
-# def CreateProgressBar():
-#     # Progress bar container widget
-#     cwProgressBar = QWidget()
-#     # Progress bar widget
-#     wProgressBar = QProgressBar(cwProgressBar)
-#     wProgressBar.setMinimum(0)
-#     wProgressBar.setMaximum(playerRequiredXP)
-#     wProgressBar.setValue(playerCurrentXP)
-#     # Agencement verticale
-#     verticalLayout = QVBoxLayout()
-#     verticalLayout.addWidget(wProgressBar)
-#     # Application de l'agencement verticale
-#     cwProgressBar.setLayout(verticalLayout)
-#
-#     return cwProgressBar
-#
-# def AddProgressBarToMainWindow():
-#     cwProgressBar = CreateProgressBar()
-#
-#     mw.mainLayout.addWidget(cwProgressBar)
-#
-# gui_hooks.profile_did_open.append(AddProgressBarToMainWindow)
 
 action = QAction("Mon profil", mw)
 qconnect(action.triggered, ShowXP)
