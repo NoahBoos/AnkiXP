@@ -1,0 +1,9 @@
+{
+    "playerLevel": 0,
+    "playerCurrentXP": 0,
+    "playerRequiredXP": 50,
+    "expForEasy": 3,
+    "expForMedium": 2,
+    "expForHard": 1,
+    "expForMissed": 0
+}
